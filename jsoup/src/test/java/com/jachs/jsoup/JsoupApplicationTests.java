@@ -14,7 +14,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
 
+/***
+ * 
+ * @author zhanchaohan
+ *
+ */
 public class JsoupApplicationTests {
+	private static final String testClassPath=JsoupApplicationTests.class.getResource("/htmltests").getPath();
 	
 	@Test
 	public void testA() throws IOException {
@@ -32,7 +38,7 @@ public class JsoupApplicationTests {
 		System.out.println("title :" + title);
 
 		// 从文件加载HTML
-		doc = Jsoup.parse(new File("F:\\jsoup\\html\\index.html"), "utf-8");
+		doc = Jsoup.parse(new File(testClassPath+File.separator+"baidu-cn-home.html"), "utf-8");
 		title = doc.title();
 		System.out.println("title :" + title);
 	}
@@ -108,7 +114,7 @@ public class JsoupApplicationTests {
 	 */
 	@Test
 	public void test5() throws IOException {
-		Document document = Jsoup.parse(new File("F:\\jsoup\\html\\login.html"), "utf-8");
+		Document document = Jsoup.parse(new File(testClassPath+File.separator+"login.html"), "utf-8");
 		Element loginform = document.getElementById("registerform");
 
 		Elements inputElements = loginform.getElementsByTag("input");
@@ -182,7 +188,7 @@ public class JsoupApplicationTests {
 		byte[] byteArr = new byte[1024];
 		InputStream is = urlConn.getInputStream();
 		OutputStream os = new FileOutputStream(new File(
-				new File("").getAbsoluteFile() + File.separator + "img" + File.separator + names[names.length - 1]));
+				new File("").getAbsoluteFile() + File.separator + names[names.length - 1]));
 		while ((len = is.read(byteArr)) != -1) {
 			os.write(byteArr, 0, len);
 		}
