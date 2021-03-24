@@ -12,13 +12,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
-@SpringBootTest
-class JsoupApplicationTests {
+public class JsoupApplicationTests {
+	
 	@Test
-	public void test1() throws IOException {
+	public void testA() throws IOException {
 		// 从URL加载HTML
 		Document document = Jsoup.connect("http://www.baidu.com").get();
 		String title = document.title();
@@ -162,7 +161,8 @@ class JsoupApplicationTests {
 		System.out.println("*************");
 		System.out.println(div.text());
 	}
-	//扒一波图片
+
+	// 扒一波图片
 	@Test
 	public void test8() throws IOException {
 		Document document = Jsoup.connect("https://car.autohome.com.cn/pic/").get();
@@ -170,19 +170,21 @@ class JsoupApplicationTests {
 		for (Element link : links) {
 			System.out.println("link : " + link.attr("src"));
 			System.out.println("text :" + link.text());
-			downLoad("http:"+link.attr("src"));
+			downLoad("http:" + link.attr("src"));
 		}
 	}
+
 	private void downLoad(String url) throws IOException {
-		String []names=url.split("/");
-		URL urls=new URL(url);
-		URLConnection urlConn= urls.openConnection();
-		int len=0;
-		byte []byteArr=new byte [1024];
-		InputStream is=urlConn.getInputStream();
-		OutputStream os=new FileOutputStream(new File(new File("").getAbsoluteFile()+File.separator+"img"+File.separator+names[names.length-1]));
-		while((len=is.read(byteArr))!=-1) {
-			os.write(byteArr, 0,len);
+		String[] names = url.split("/");
+		URL urls = new URL(url);
+		URLConnection urlConn = urls.openConnection();
+		int len = 0;
+		byte[] byteArr = new byte[1024];
+		InputStream is = urlConn.getInputStream();
+		OutputStream os = new FileOutputStream(new File(
+				new File("").getAbsoluteFile() + File.separator + "img" + File.separator + names[names.length - 1]));
+		while ((len = is.read(byteArr)) != -1) {
+			os.write(byteArr, 0, len);
 		}
 		os.close();
 		is.close();
