@@ -19,8 +19,8 @@ import org.junit.Test;
  * @author zhanchaohan
  *
  */
-public class JsoupApplicationTests {
-	private static final String testClassPath=JsoupApplicationTests.class.getResource("/htmltests").getPath();
+public class ApplicationTest {
+	private static final String testClassPath=ApplicationTest.class.getResource("/htmltests").getPath();
 	
 	@Test
 	public void testA() throws IOException {
